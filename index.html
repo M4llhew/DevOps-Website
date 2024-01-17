@@ -4,20 +4,202 @@
 <head>
     <title>DevOps - Task Management</title>
     <link rel="stylesheet" href="main.css">
+    <script>
+        function toggleUserDropdown(event) {
+            event.classList.toggle("change");
+            var dropdownContent = document.querySelector('.dropdown-content');
+            dropdownContent.style.display = (dropdownContent.style.display === 'block') ? 'none' : 'block';
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const user_data = [
+                {
+                    name: 'Justin Doe',
+                    title: 'Web Developer',
+                    icon: "male"
+                },
+                {
+                    name: 'Jane Doe',
+                    title: 'Senior Manager',
+                    icon: "female"
+                },
+                {
+                    name: 'Edward Doe',
+                    title: 'Software Developer',
+                    icon: "female"
+                },
+                {
+                    name: 'Doe Doe',
+                    title: 'Project Manager',
+                    icon: "male"
+                },
+            ];
+
+            const container = document.getElementById('container');
+
+            user_data.forEach(function ({ name, title, icon }) {
+                const user_div = document.createElement("div");
+                user_div.setAttribute('class', 'nav-containers');
+
+                const profile_icon = document.createElement("img");
+                profile_icon.setAttribute('class', 'icon mr-1');
+                if (icon === "male") {
+                    profile_icon.setAttribute('src', '/svg/profile_icons/man-user-circle-icon.svg');
+                } else {
+                    profile_icon.setAttribute('src', '/svg/profile_icons/woman-user-circle-icon.svg');
+                }
+
+                const info_div = document.createElement("div");
+                info_div.setAttribute('class', 'info');
+
+                const name_h2 = document.createElement("h2");
+                name_h2.setAttribute('class', 'capitalise');
+                name_h2.innerText = name;
+
+                const title_h3 = document.createElement("h3");
+                title_h3.setAttribute('class', 'capitalise');
+                title_h3.setAttribute('class', 'grey')
+                title_h3.innerText = title;
+
+                const dropdown_container_div = document.createElement("div");
+                dropdown_container_div.setAttribute('class', 'dropdown-container');
+
+                const hamburger_div = document.createElement("div");
+                hamburger_div.setAttribute('class', 'container mr-1');
+
+
+                const bar1_div = document.createElement("div");
+                bar1_div.setAttribute('class', 'bar1');
+
+                const bar2_div = document.createElement("div");
+                bar2_div.setAttribute('class', 'bar2');
+
+                const bar3_div = document.createElement("div");
+                bar3_div.setAttribute('class', 'bar3');
+
+                const dropdown_content_div = document.createElement("div");
+                dropdown_content_div.setAttribute('class', 'dropdown-content');
+
+
+                const remove_text_span = document.createElement("span");
+                remove_text_span.setAttribute('class', 'remove-text capitalise');
+                remove_text_span.innerText = "remove";
+
+                user_div.appendChild(profile_icon);
+                user_div.appendChild(info_div);
+                user_div.appendChild(dropdown_container_div);
+
+                info_div.appendChild(name_h2);
+                info_div.appendChild(title_h3);
+
+                dropdown_container_div.appendChild(hamburger_div);
+                dropdown_container_div.appendChild(dropdown_content_div);
+
+                hamburger_div.appendChild(bar1_div);
+                hamburger_div.appendChild(bar2_div);
+                hamburger_div.appendChild(bar3_div);
+
+                dropdown_content_div.appendChild(remove_text_span);
+
+                container.appendChild(user_div);
+
+                hamburger_div.addEventListener('click', function (event) {
+                    hamburger_div.classList.toggle('change');
+                    dropdown_content_div.style.display = (dropdown_content_div.style.display === 'block') ? 'none' : 'block';;
+                });
+            });
+        })
+
+    </script>
 </head>
+
 <body>
     <div class="main">
-        <div class="members">
-            <h1>members</h1>
-            <div class="user">
-                <img class="icon mr-1" src="/svg/profile_icons/profile_icon.svg" alt="profile icon image">
-                <div class="info">
-                    <h2>name name</h2>
-                    <h3>job title</h3>
+        <div class="boards">
+            <h1 class="capitalise">boards</h1>
+            <div class="nav-containers">
+                <img class="icon mr-1" src="/svg/profile_icons/folder-svgrepo-com.svg">
+                <h3 class="capitalise board-header">team 1</h3>
+                <div class="dropdown-container">
+                    <div class="container mr-1" onclick="toggleUserDropdown(this)">
+                        <div class="bar1"></div>
+                        <div class="bar2"></div>
+                        <div class="bar3"></div>
+                    </div>
+                    <div class="dropdown-content">
+                        <span class="remove-text capitalise">remove</span>
+                    </div>
                 </div>
-                <img class="icon" src="/svg/profile_icons/three_dots_vertical.svg" alt="three vertical dots button">
+            </div>
+        </div>
+
+
+        <div class="members">
+            <h1 class="capitalise">members</h1>
+            <div id="container"></div>
+            <div class="capitalise member-addition">
+                <img class="icon-sm red" src="/svg/profile_icons/plus-large-svgrepo-com.svg" alt="add member button">
+                <p>Add Member</p>
+            </div>
+        </div>
+
+        <div class="task-board">
+            <div class="header inline-row">
+                <h1> Team 1 </h1>
+                <div class="inline-column">
+                    <div class="labels">
+                        <span class="label">label1</span>
+                        <span class="label">label1</span>
+                        <span class="label">label1</span>
+                        <span class="label">label1</span>
+                        <span class="label">label1</span>
+                        <span class="label">label1</span>
+                        <span class="label">label1</span>
+                    </div>
+                    <div class="filters">
+                        <span>filter1</span>
+                        <span>filter1</span>
+                        <span>filter1</span>
+                        <span>filter1</span>
+                        <span>filter1</span>
+                        <span>filter1</span>
+                    </div>
+                </div>
+                <div class="new-post-btn capitalise">
+                    + new post
+                </div>
+            </div>
+
+            <div class="tasks">
+                <div class="task">
+                    <!-- <span class="status">status bar</span> -->
+                    <div class="inline-row">
+                        <div>
+                            <h2>Title of the Task</h2>
+                            <h3>Short Description</h3>
+                        </div>
+                        <img class="user-assigned-icon" src="/svg/profile_icons/man-user-circle-icon.svg"
+                            alt="user assigned profile icon">
+
+                    </div>
+                    <div class="inline-row">
+                        <span class="label">UX Design</span>
+                        <div class="date">
+                            <img class="date-icon" src="/svg/profile_icons/calendar-time-svgrepo-com.svg"
+                                alt="calendar icon for the date">
+                            <p>02/01/2024 </p>
+                        </div>
+                        <div class="comments">
+                            <p> 3</p>
+                            <img class="comment-icon" src="/svg/profile_icons/comment-1-svgrepo-com.svg"
+                                alt="comment indicator icon">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 </body>
+
 </html>
