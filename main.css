@@ -98,8 +98,22 @@ h6 {
     padding: 0 0 0 1rem;
 }
 
-.user .info h2,h3,p {
+.user .info {
     margin: 0 3rem 0 0;
+    text-transform: capitalize;
+    
+}
+
+.user .info h3 {
+    color: gray;
+    font-weight: 500;
+    margin: 0;
+}
+
+.user .info h2 {
+    /* color: gray; */
+    font-weight: 700;
+    margin: 0;
 }
 
 .user  .icon {
